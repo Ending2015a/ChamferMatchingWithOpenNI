@@ -4,8 +4,8 @@ opencvlibs = -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopenc
 opennilib = -lOpenNI2
 
 chamfer: Source.o
-	${CC} ${CFLAGS} Source.o -o $@ ${opencvlibs} ${opennilibs}
+	${CC} ${CFLAGS} Source.o -o $@ ${opencvlibs} ${opennilib}
 Source.o: Source.cpp
-	${CC} ${CFLAGS} -c $< -o $@ ${opencvlibs} ${opennilibs}
+	${CC} ${CFLAGS} -c $< -o $@ ${opencvlibs} ${opennilib}
 clean:
 	@rm -rf *.o

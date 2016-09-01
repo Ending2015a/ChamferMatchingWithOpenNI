@@ -22,7 +22,12 @@
 
 void matchPuzzle(cv::Mat &img, cv::Mat &tpl){
 	cv::Mat image = img.clone();
+	cv::Mat iedge;
 	cv::Mat templ = tpl.clone();
+
+	ending::DEBUG_img = image.clone();
+
+	colorEdgeDetection(image, iedge, true);
 
 	ending::RChamferMatcher cmatcher(1, 20, 1.0, 3, 3, 3, 0.8, 1.2, 0.5, 20, 5);
 
@@ -30,7 +35,7 @@ void matchPuzzle(cv::Mat &img, cv::Mat &tpl){
 
 	std::vector<ending::Matcher::MatchPoints> matchpoints;
 
-	cmatcher.multimatching(image, matchpoints);
+	cmatcher.multimatching(iedge, matchpoints);
 
 	for (int i = 0; i < matchpoints.size(); i++){
 		ending::Matcher::MatchPoint &mp = matchpoints[i][0];
@@ -49,7 +54,7 @@ void matchPuzzle(cv::Mat &img, cv::Mat &tpl){
 	}
 
 	cv::imshow("result", image);
-
+	cv::imshow("debug", ending::DEBUG_img);
 }
 
 
