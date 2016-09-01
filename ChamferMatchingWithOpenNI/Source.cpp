@@ -176,6 +176,9 @@ int main(int argc, char *argv[]){
 		if (key == ' '){
 			matchPuzzle(mcolor, templ);
 		}
+		else if (key == 27){
+			break;
+		}
 
 		cv::hconcat(mdepth, mcolor, image);
 		cv::imshow("Image", image);
